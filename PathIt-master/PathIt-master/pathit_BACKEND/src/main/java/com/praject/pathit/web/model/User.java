@@ -1,4 +1,4 @@
-package com.praject.pathit.model;
+package com.praject.pathit.web.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;

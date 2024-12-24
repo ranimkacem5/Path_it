@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PathitApplication<pathit>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.praject.pathit.PathitApplication",
+            "projectName": "pathit",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

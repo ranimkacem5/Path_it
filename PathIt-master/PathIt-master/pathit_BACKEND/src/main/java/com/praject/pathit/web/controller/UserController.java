@@ -1,19 +1,19 @@
-package com.praject.pathit.controller;
+package com.praject.pathit.web.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import com.praject.pathit.model.User;
-import com.praject.pathit.repository.UserRepository;
+import com.praject.pathit.dao.repositories.UserRepository;
+import com.praject.pathit.web.model.User;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/pathit")
 @RequiredArgsConstructor // Génère un constructeur pour les final fields
-@CrossOrigin(origins = "http://localhost:3000") // Gérer CORS au niveau du contrôleur
+@CrossOrigin(origins = "http://127.0.0.1:3000") // Gérer CORS au niveau du contrôleur
 public class UserController {
 
     private final UserRepository userRepository;
