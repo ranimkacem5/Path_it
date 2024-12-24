@@ -18,7 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @Document( collection = "formations")
-public class Formation {//ranim
+public class Formation {//ranim kacem
 
     @Id
     private String id; // MongoDB ID (String)
