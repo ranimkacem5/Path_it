@@ -18,6 +18,11 @@ public class CorsConfig {
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Méthodes HTTP autorisées
                         .allowedHeaders("*") // Autoriser tous les en-têtes
                         .allowCredentials(true); // Autoriser les cookies si nécessaires
+                        registry.addMapping("/api/admin/domaines/add")
+                        .allowedOrigins("http://localhost:3000")
+                        .allowedMethods("POST")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }

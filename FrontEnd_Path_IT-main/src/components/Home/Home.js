@@ -8,6 +8,11 @@ const Home = () => {
     const handleClick = () => {
         navigate('/login');  // Navigate to login page on button click
     };
+    
+    const handleClick2 = () => {
+        navigate('/admin');  // Navigate to login page on button click
+    };
+
 
     return (
         <>
@@ -25,6 +30,7 @@ const Home = () => {
                     <h1>Discover Your IT Path</h1>
                     <p>Your gateway to exploring your ideal IT domain with personalized guidance and resources.</p>
                     <button className="cta-btn" onClick={handleClick}>Get Started</button>
+                    <button className="cta-btn" onClick={handleClick2}>Get Started Admin</button>
                 </div>
             </section>
 

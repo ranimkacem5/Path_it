@@ -6,6 +6,7 @@ import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import AdminPage from './components/Admin/AdminPage';
 import Questionnaire from './components/User/QuestIA/Questionnaire';
+import DomaineForm from  './components/Admin/DomaineForm';
 import Toggle from './components/Auth/Toggle';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -46,6 +47,7 @@ const App = () => {
                             <Route path="/" element={<Home />} /> {/* Home page */}
                             <Route path="/admin" element={<AdminPage />} />
                             <Route path="/questionnaire" element={<Questionnaire />} />
+                            <Route path="/domaine-form" element={<DomaineForm />} />
                         </Routes>
                     </CSSTransition>
                 </TransitionGroup>
