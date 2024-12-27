@@ -1,0 +1,40 @@
+/* FormationsPage.css */
+.formations-container {
+    padding: 20px;
+  }
+  
+  .add-formation-btn {
+    margin-bottom: 20px;
+  }
+  
+  .formations-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .formations-table th, .formations-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .formations-table th {
+    background-color: #f2f2f2;
+  }
+  
+  /* FormationForm.css */
+  .formation-form-container {
+    padding: 20px;
+  }
+  
+  .formation-form-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .formation-form-container label {
+    margin-bottom: 10px;
+  }
+  
+  .formation-form-container button {
+    margin-top: 20px;
+  }

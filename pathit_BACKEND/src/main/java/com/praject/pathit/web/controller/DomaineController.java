@@ -3,6 +3,7 @@ package com.praject.pathit.web.controller;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,9 @@ public class DomaineController {
 
     private final DomaineService domaineService; // Injecté automatiquement par Spring
 
-    public static String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/static/images";
+    public static String uploadDirectory = Paths.get("src", "main", "resources", "static", "images").toAbsolutePath().toString();
+
+
 void DomaineController( DomaineService domaineService)
 {
   domaineService=domaineService;
@@ -74,31 +77,35 @@ void DomaineController( DomaineService domaineService)
         }
     }
 
-    @GetMapping("/domaines")
-    public ResponseEntity<?> getAllDomaines() {
-        try {
-            return ResponseEntity.ok(domaineService.getAllDomaines());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de la récupération des domaines");
-        }
+    @GetMapping("/AdminPage")
+public ResponseEntity<?> getAllDomaines() {
+    try {
+        
+        List<Domaine> domaines = domaineService.getAllDomaines();
+        return ResponseEntity.ok(domaines); 
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de la récupération des domaines");
     }
-     @GetMapping("/domaines/{id}")
-    public ResponseEntity<?> getDomaineById(@PathVariable("id") String id) {
-        try {
-            Domaine domaine = domaineService.getDomaineById(id);
-            if (domaine != null) {
-                return ResponseEntity.ok(domaine);
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Domaine introuvable");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de la récupération du domaine");
-        }
-    }
+}
 
-    @PutMapping("/domaines/{id}")
+@GetMapping("/domaine-edit/{id}")
+public ResponseEntity<?> getDomaineById(@PathVariable("id") String id) {
+    try {
+        Domaine domaine = domaineService.getDomaineById(id);
+        if (domaine != null) {
+            return ResponseEntity.ok(domaine);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Domaine introuvable");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de la récupération du domaine");
+    }
+}
+
+
+    @PutMapping("/domaine-edit/{id}")
     public ResponseEntity<String> updateDomaine(
             @PathVariable("id") String id,
             @RequestParam("nom") String nom,

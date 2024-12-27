@@ -1,12 +1,40 @@
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
 import './AdminPage.css';
 import { useNavigate } from 'react-router-dom';
 
 const AdminPage = () => {
+  const [domaines, setDomaines] = useState([]); 
   const navigate = useNavigate(); // Déplacement ici pour respecter les règles des hooks
+   
+  useEffect(() => {
+    const fetchDomaines = async () => {
+      try {
+        const response = await fetch('http://localhost:8052/api/admin/domaines/AdminPage',{method:'GET'});
+        if (!response.ok) {
+          throw new Error('Erreur lors de la récupération des domaines');
+        }
+        const data = await response.json();
+        console.log(data); // Vérifiez ici les données reçues
+        setDomaines(data);
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+  
+    fetchDomaines();
+  }, []);
+  
+
 
   const handleAddDomain = () => {
     navigate('/domaine-form');
+  };
+  const handleEditDomain = (id) => {
+    navigate(`/domaine-edit/${id}`);
+  };
+  const handleGoToFormations = () => {
+    navigate('/formations'); // Naviguer vers la page des formations
   };
 
   return (
@@ -29,9 +57,9 @@ const AdminPage = () => {
             <span className="icon">📊</span>
             Analytics
           </li>
-          <li>
+          <li onClick={handleGoToFormations} className="clickable">
             <span className="icon">📚</span>
-            Domaines
+            Formations
           </li>
           <li>
             <span className="icon">⚙️</span>
@@ -50,9 +78,31 @@ const AdminPage = () => {
           <i className="fas fa-plus"></i> Ajouter domaine
         </button>
         <div className="info-cards">
-          <div className="info-card"></div>
-          <div className="info-card"></div>
-          <div className="info-card"></div>
+          {domaines.length > 0 ? (
+            domaines.map((domaine) => (
+              <div className="info-card" key={domaine.id}>
+                <h3>{domaine.nom}</h3>
+                <p>{domaine.description}</p>
+                {domaine.roadmap && (
+                  <img
+                    src={`/${domaine.roadmap}`}
+                    alt={domaine.nom}
+                    className="domaine-image"
+                  />
+                  
+                )}
+                      <button
+                  className="edit-button"
+                  onClick={() => handleEditDomain(domaine.id)}
+                >
+                  Modifier
+                </button>
+              </div>
+              
+            ))
+          ) : (
+            <p>Aucun domaine trouvé</p>
+          )}
         </div>
       </div>
 

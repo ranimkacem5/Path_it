@@ -7,6 +7,10 @@ import Register from './components/Auth/Register';
 import AdminPage from './components/Admin/AdminPage';
 import Questionnaire from './components/User/QuestIA/Questionnaire';
 import DomaineForm from  './components/Admin/DomaineForm';
+import DomaineEdit from  './components/Admin/DomaineEdit';
+import FormationForm from  './components/Admin/FormationForm';
+import FormationEditForm from  './components/Admin/FormationEditForm';
+import FormationsPage from  './components/Admin/FormationsPage';
 import Toggle from './components/Auth/Toggle';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -43,12 +47,17 @@ const App = () => {
                         classNames="fade"
                         unmountOnExit
                     >
-                        <Routes location={location}>
-                            <Route path="/" element={<Home />} /> {/* Home page */}
-                            <Route path="/admin" element={<AdminPage />} />
-                            <Route path="/questionnaire" element={<Questionnaire />} />
-                            <Route path="/domaine-form" element={<DomaineForm />} />
-                        </Routes>
+                     <Routes location={location}>
+                     <Route path="/formations" element={<FormationsPage />} />
+    <Route path="/" element={<Home />} /> {/* Home page */}
+    <Route path="/formation-form" element={<FormationForm />} />
+    <Route path="/formation-edit/:id" element={<FormationEditForm />} />
+    <Route path="/admin" element={<AdminPage />} />
+    <Route path="/questionnaire" element={<Questionnaire />} />
+    <Route path="/domaine-form" element={<DomaineForm />} /> {/* Correct closing */}
+    <Route path="/domaine-edit/:id" element={<DomaineEdit />} /> {/* Correct closing */}
+</Routes>
+
                     </CSSTransition>
                 </TransitionGroup>
             )}
